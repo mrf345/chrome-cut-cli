@@ -1,5 +1,5 @@
 from sys import exc_info
-from app.cli import cli
+from chrome_cut.cli import cli
 
 try:
     cli()
