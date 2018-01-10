@@ -12,14 +12,15 @@ setup(
     name='Chrome-Cut',
     version='0.1',
     url='https://github.com/mrf345/chrome-cut-cli/',
-    download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.3.tar.gz',
+    download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.3.1.tar.gz',
     license='MPL 2.0',
     author='Mohamed Feddad',
     author_email='mrf345@gmail.com',
     description='Command line tool to scan and control chrome cast devices.',
     long_description=__doc__,
+    packages=['chrome_cut'],
     entry_points={
-        'console_scripts': ['chrome-cut=app.cli:cli']
+        'console_scripts': ['chrome-cut=chrome_cut.cli:cli']
     },
     zip_safe=False,
     include_package_data=True,
