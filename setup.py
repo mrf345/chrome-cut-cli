@@ -10,9 +10,9 @@ from setuptools import setup
 
 setup(
     name='Chrome-Cut',
-    version='0.1',
+    version='0.2',
     url='https://github.com/mrf345/chrome-cut-cli/',
-    download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.3.1.tar.gz',
+    download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.2.tar.gz',
     license='MPL 2.0',
     author='Mohamed Feddad',
     author_email='mrf345@gmail.com',
