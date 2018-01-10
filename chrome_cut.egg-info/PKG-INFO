@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: chrome-cut
+Version: 0.2
+Summary: Command line tool to scan and control chrome cast devices.
+Home-page: https://github.com/mrf345/chrome-cut-cli/
+Author: Mohamed Feddad
+Author-email: mrf345@gmail.com
+License: MPL 2.0
+Download-URL: https://github.com/mrf345/chrome-cut-cli/archive/0.2.tar.gz
+Description-Content-Type: UNKNOWN
+Description: 
+        chrome-cut
+        -------------
+        
+        Basic command line tool to scan, detect, stream and control chrome cast
+        devices. 
+        
+        
+Keywords: chrome,cast,chromecast,control,monitor,restore,stream,scan
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Security
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: Utilities
