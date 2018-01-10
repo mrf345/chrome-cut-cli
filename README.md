@@ -13,7 +13,7 @@
 
 ## Setup:
 ### - With pip:
-1. `pip install chrome-cut`
+1. `pip install Chrome-Cut`
 2. `chrome-cut --help`
 
 ### - with git:
