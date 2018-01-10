@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='chrome-cut',
-    version='0.2',
+    version='0.1',
     url='https://github.com/mrf345/chrome-cut-cli/',
     download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.2.tar.gz',
     license='MPL 2.0',
@@ -18,7 +18,9 @@ setup(
     author_email='mrf345@gmail.com',
     description='Command line tool to scan and control chrome cast devices.',
     long_description=__doc__,
-    scripts=['chrome-cut'],
+    entery_points={
+        'console_script': ['chrome-cut=app.cli:cli']
+    },
     zip_safe=False,
     include_package_data=True,
     platforms='any',
