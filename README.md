@@ -22,7 +22,7 @@
 3. `pip install requirements.txt`
 4. `python chrome-cut.py`
 
-#### - Or you can download binaries for Windows and Mac OS from [SoruceForge](https://sourceforge.net)
+#### - Or you can download binaries for Windows and Mac OS from [SoruceForge](https://sourceforge.net/projects/chrome-cut-cli/)
 ## Commands:
 `chrome-cut.py --help` ` chrome-cut.py command --help`
 ```
