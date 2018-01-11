@@ -4,6 +4,7 @@
 from .core import get_ips, loop_ips, is_ccast, cancel_app, send_app
 from .core import cast, reset_cc, shut, block
 import click
+from os import name
 
 
 def v_local_ip(a, b, value):
@@ -73,6 +74,9 @@ def cli():
               type=str, callback=v_local_ip)
 def scan(ip_address):
     """scan the local network for chrome cast devices, with inserted IP"""
+    if name == 'nt':
+        click.confirm('Scanning asynchronsly on Windows is a bad idea. ' +
+                      'Do you Concur ?! and wish to continue ', abort=True)
     active_CC = loop_ips(ip_address, True)
     if active_CC is None:
         click.echo(

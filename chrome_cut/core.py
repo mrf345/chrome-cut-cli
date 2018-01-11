@@ -3,16 +3,20 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import socket
 from netifaces import ifaddresses, interfaces
-from sys import exit, argv
-from os import system, name
-import asyncio
-from requests import post, delete, get
+from sys import version
+from os import name
+from requests import post, delete
 from json import dumps
 from time import sleep
 import click
+import trollius as asyncio
+from trollius import From, Return
 
 counter = 0  # global counter to count tasks, too tired to think of any better
-ports = [8008, 8009]  # global chrome cast known ports
+
+
+def ports():
+    return [8008, 8009, 80]  # global chrome cast known ports
 
 
 def get_ips(gui=False):
@@ -33,9 +37,8 @@ def get_ips(gui=False):
 
 def is_ccast(ip, timeout=0.1):
     """ to check without async, if ip is legit chrome cast device """
-    global ports
     results = []
-    for port in ports:
+    for port in ports():
         socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             for i in get_ips():  # getting the network card ip to connect with
@@ -53,26 +56,12 @@ def is_ccast(ip, timeout=0.1):
 
 @asyncio.coroutine
 # old style since using py3.4 to insure compatibility between CC-gui CC-cli
-def det_ccast(ip, log=False, timeout=0.05):
+def det_ccast(ip, log=False):
     """
     to detect chrome cast with its known ports and return its ip
     and status in list, asyncrnioudfdslfr-sly.
     """
-    global ports
-    results = []  # in-which socket response will be stored to check later
-    for port in ports:
-        socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        for i in get_ips():  # getting the network card ip to connect with
-            if '.'.join(ip.split('.')[0:-1]) in i:  # cutting of the last digit
-                connected_ip = i
-        socket.setdefaulttimeout(timeout)
-        try:
-            socket_obj.bind((connected_ip, 0))
-            result = socket_obj.connect_ex((ip, port))
-            results.append(result)
-        except:
-            pass
-        socket_obj.close()
+    results = is_ccast(ip)
     if log:
         global counter
         counter += 1
@@ -91,18 +80,24 @@ def det_ccast(ip, log=False, timeout=0.05):
                 ('[' + '=' * int(counter / 10)) + ']',
                 blink=False, bg='red', fg='black'))
         click.clear()
-    yield from asyncio.sleep(0)
-    return [True, ip] if 0 in results else [False, ip]
+    yield From(asyncio.sleep(0))
+    raise Return([results, ip])
 
 
-def loop_ips(ip, log=False, timeout=0.05):
+def loop_ips(ip, log=False):
     """ looping through the ips from ch_ip till 255 and detect using
     det_ccast and returning a list of potential chromecasts """
     active_ccasts = []  # detected chrome casts stored here
     loop = asyncio.get_event_loop()
-    tasks = [det_ccast(  # fetching the range of ips to async function
-        '.'.join(ip.split('.')[0:-1]) + '.' + str(i),
-        log, timeout) for i in range(1, 256)]
+    if version.startswith('3'):  # if python3 import it, to avoid syntax issues
+        from chrome_cut.fix3 import det_ccast as det_ccast3
+        tasks = [det_ccast3(
+            '.'.join(ip.split('.')[0:-1]) + '.' + str(i),
+            log) for i in range(1, 256)]
+    else:
+        tasks = [det_ccast(  # fetching the range of ips to async function
+            '.'.join(ip.split('.')[0:-1]) + '.' + str(i),
+            log) for i in range(1, 256)]
     results = loop.run_until_complete(asyncio.gather(asyncio.wait(tasks)))
     #  loop.close() should be stopped in the before exist
     #  FIXME: register loop.close() to before exit
@@ -116,8 +111,7 @@ def loop_ips(ip, log=False, timeout=0.05):
 
 def reset_cc(ip):
     """ sending json a request to system restore """
-    global ports
-    for port in ports:
+    for port in ports():
         try:
             post(
                 "http://" + ip + ":" + str(port) + "/setup/reboot",
@@ -131,8 +125,7 @@ def reset_cc(ip):
 
 def cancel_app(ip):
     """ canceling whatever been played on chrome cast """
-    global ports
-    for port in ports:
+    for port in ports():
         try:
             delete(
                 "http://" + ip + ":" + str(port) + "/apps/YouTube",
@@ -145,8 +138,7 @@ def cancel_app(ip):
 
 def send_app(ip, video_link="v=04F4xlWSFh0&t=9"):
     """ stream youtube video to chrome cast """
-    global ports
-    for port in ports:
+    for port in ports():
         try:
             post("http://" + ip + ":" + str(port) + "/apps/YouTube",
                  data=video_link,

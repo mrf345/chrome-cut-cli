@@ -10,9 +10,9 @@ from setuptools import setup
 
 setup(
     name='Chrome-Cut',
-    version='0.2',
+    version='0.2.1',
     url='https://github.com/mrf345/chrome-cut-cli/',
-    download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.2.tar.gz',
+    download_url='https://github.com/mrf345/chrome-cut-cli/archive/0.2.1.tar.gz',
     license='MPL 2.0',
     author='Mohamed Feddad',
     author_email='mrf345@gmail.com',
@@ -20,7 +20,7 @@ setup(
     long_description=__doc__,
     packages=['chrome_cut'],
     entry_points={
-        'console_scripts': ['chrome-cut=chrome_cut.cli:cli']
+        'console_scripts': ['chrome-cut=chrome_cut:cli']
     },
     zip_safe=False,
     include_package_data=True,
@@ -28,7 +28,8 @@ setup(
     install_requires=[
         'requests',
         'click',
-        'netifaces'
+        'netifaces',
+        'trollius'
     ],
     keywords=['chrome', 'cast', 'chromecast', 'control', 'monitor',
               'restore', 'stream', 'scan'],
@@ -40,7 +41,7 @@ setup(
         'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python',
         'Topic :: Security', 'Topic :: System :: Monitoring',
         'Topic :: Utilities'
     ]
