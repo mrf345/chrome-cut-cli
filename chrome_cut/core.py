@@ -11,6 +11,8 @@ from time import sleep
 import click
 import trollius as asyncio
 from trollius import From, Return
+from atexit import register
+
 
 counter = 0  # global counter to count tasks, too tired to think of any better
 
@@ -101,6 +103,7 @@ def loop_ips(ip, log=False):
     results = loop.run_until_complete(asyncio.gather(asyncio.wait(tasks)))
     #  loop.close() should be stopped in the before exist
     #  FIXME: register loop.close() to before exit
+    register(loop.close)
     for result in results[0][0]:  # looking for successful ones
         global counter
         counter = 0  # clearing up the global counter
