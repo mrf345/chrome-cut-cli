@@ -16,7 +16,7 @@ counter = 0  # global counter to count tasks, too tired to think of any better
 
 
 def ports():
-    return [8008, 8009, 80]  # global chrome cast known ports
+    return [8008, 8009]  # global chrome cast known ports
 
 
 def get_ips(gui=False):
@@ -35,7 +35,7 @@ def get_ips(gui=False):
     return None
 
 
-def is_ccast(ip, timeout=0.1):
+def is_ccast(ip, timeout=0.02):
     """ to check without async, if ip is legit chrome cast device """
     results = []
     for port in ports():
