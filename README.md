@@ -1,12 +1,9 @@
 <p align='center'>
 <img src='https://chrome-cut.github.io//logo.png' width='40%'>
 </p>
-
-# chrome-cut-cli
-### Basic command line tool to scan, detect, stream and control chrome cast devices. Great for pranking someone with a chrome cast device in your local network. Plus there is a [GUI version here][3fb05a7a].
-
-  [3fb05a7a]: https://github.com/mrf345/chrome-cut "GUI version"
-
+<h4 align='center'> Basic command line tool to scan, detect, stream and
+control chrome cast devices. Great for pranking someone with a chrome cast device in your local network.</h4>
+<hr>
 <p align='center'>
 <img src='https://chrome-cut.github.io/chrome-cut-cli.gif'>
 </p>
@@ -16,11 +13,11 @@
 1. `pip install Chrome-Cut`
 2. `chrome-cut --help`
 
-### - with git:
+### - With git:
 1. `git clone https://github.com/mrf345/chrome-cut-cli.git`
 2. `cd chrome-cut-cli`
 3. `pip install requirements.txt`
-4. `python chrome-cut.py`
+4. `python chrome-cut.py --help`
 
 #### - Or you can download binaries for Windows and Mac OS from [SoruceForge](https://sourceforge.net/projects/chrome-cut-cli/)
 ## Commands:
