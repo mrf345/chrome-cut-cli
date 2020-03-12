@@ -19,7 +19,7 @@ control chrome cast devices. Great for pranking someone with a chrome cast devic
 > 3. `pip install requirements.txt`
 > 4. `python chrome-cut.py --help`
 
-#### - Or you can download binaries for Windows and Mac OS from [SoruceForge](https://sourceforge.net/projects/chrome-cut-cli/)
+#### - Or you can download binaries for Windows and Mac OS from [SourceForge](https://sourceforge.net/projects/chrome-cut-cli/)
 ## Commands:
 `chrome-cut.py --help` ` chrome-cut.py command --help`
 ```
